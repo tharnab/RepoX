@@ -1,0 +1,1 @@
+"""Authentication module - GitHub OAuth + encrypted token storage."""
