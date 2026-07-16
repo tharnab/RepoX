@@ -14,6 +14,8 @@ interface AuthContextType {
   login: () => void;
   loginWithDifferentAccount: () => void;
   logout: () => Promise<void>;
+  theme: string;
+  toggleTheme: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -22,6 +24,8 @@ const AuthContext = createContext<AuthContextType>({
   login: () => {},
   loginWithDifferentAccount: () => {},
   logout: async () => {},
+  theme: "light",
+  toggleTheme: () => {},
 });
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -29,6 +33,21 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [theme, setTheme] = useState("light");
+
+  // Load theme from localStorage on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    document.documentElement.classList.toggle("dark", savedTheme === "dark");
+  }, []);
+
+  const toggleTheme = useCallback(() => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  }, [theme]);
 
   const checkAuth = useCallback(async () => {
     try {
@@ -57,7 +76,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const loginWithDifferentAccount = () => {
-    // Open GitHub logout in a hidden iframe, then redirect
     const iframe = document.createElement("iframe");
     iframe.src = "https://github.com/logout";
     iframe.style.display = "none";
@@ -85,6 +103,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         login,
         loginWithDifferentAccount,
         logout: handleLogout,
+        theme,
+        toggleTheme,
       }}
     >
       {children}

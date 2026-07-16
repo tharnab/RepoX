@@ -1,0 +1,504 @@
+/* ============================================
+   HEADER STYLES - With Dark Mode Support
+   ============================================ */
+
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height, 4rem);
+  background: var(--header-bg, #ffffff);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--header-border, #e8edf4);
+  z-index: 50;
+  transition: var(--transition-smooth, all 0.3s ease);
+  font-family: var(--font-sans, sans-serif);
+  flex-shrink: 0;
+}
+
+/* ✅ Dark Mode - Header */
+:global(.dark) .header {
+  background: var(--header-bg-dark, #1a1a1a);
+  border-bottom-color: var(--header-border-dark, #2a2a2a);
+}
+
+.container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2.5rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ============================================
+   RIGHT SECTION - Theme Toggle + Auth
+   ============================================ */
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ============================================
+   THEME TOGGLE BUTTON
+   ============================================ */
+
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--header-border, #e8edf4);
+  background: var(--header-bg, #ffffff);
+  color: var(--text-secondary, #475569);
+  cursor: pointer;
+  transition: var(--transition-smooth, all 0.3s ease);
+  flex-shrink: 0;
+}
+
+:global(.dark) .themeToggle {
+  background: var(--header-bg-dark, #1a1a1a);
+  border-color: var(--header-border-dark, #2a2a2a);
+  color: var(--text-secondary-dark, #94a3b8);
+}
+
+.themeToggle:hover {
+  background: var(--bg-tertiary, #f1f5f9);
+  border-color: var(--accent, #10b981);
+  color: var(--text-primary, #0f172a);
+  transform: rotate(15deg) scale(1.05);
+}
+
+:global(.dark) .themeToggle:hover {
+  background: var(--bg-tertiary-dark, #2a2a2a);
+  border-color: var(--accent, #34d399);
+  color: var(--text-primary-dark, #f1f5f9);
+}
+
+.themeToggle:active {
+  transform: scale(0.92);
+}
+
+.themeIcon {
+  width: 18px;
+  height: 18px;
+  transition: var(--transition-smooth, all 0.3s ease);
+}
+
+/* ============================================
+   LOGO & BRANDING
+   ============================================ */
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.logoBox {
+  width: 34px;
+  height: 34px;
+  background: var(--text-primary, #0f172a);
+  border-radius: var(--radius-sm, 8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  transition: var(--transition-smooth, all 0.3s ease);
+}
+
+:global(.dark) .logoBox {
+  background: var(--text-primary-dark, #f1f5f9);
+}
+
+.logoWrapper:hover .logoBox {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 4px 12px var(--accent-light, rgba(16, 185, 129, 0.15));
+}
+
+.logoText {
+  color: var(--bg-primary, #f8fafc);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+}
+
+:global(.dark) .logoText {
+  color: var(--bg-primary-dark, #1a1a1a);
+}
+
+.brandName {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary, #0f172a);
+  letter-spacing: -0.03em;
+  transition: var(--transition-smooth, all 0.3s ease);
+}
+
+:global(.dark) .brandName {
+  color: var(--text-primary-dark, #f1f5f9);
+}
+
+/* ============================================
+   LOADING SKELETON
+   ============================================ */
+
+.loadingSkeleton {
+  width: 120px;
+  height: 36px;
+  background: var(--bg-secondary, #ffffff);
+  border-radius: 9999px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+:global(.dark) .loadingSkeleton {
+  background: var(--bg-secondary-dark, #2a2a2a);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+}
+
+/* ============================================
+   USER BUTTON
+   ============================================ */
+
+.userButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  background: var(--bg-secondary, #ffffff);
+  border: 1px solid var(--header-border, #e8edf4);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: var(--transition-smooth, all 0.3s ease);
+  outline: none;
+}
+
+:global(.dark) .userButton {
+  background: var(--bg-secondary-dark, #2a2a2a);
+  border-color: var(--header-border-dark, #2a2a2a);
+}
+
+.userButton:hover {
+  background: var(--bg-tertiary, #f1f5f9);
+  border-color: var(--border-hover, #cbd5e1);
+  transform: translateY(-1px);
+}
+
+:global(.dark) .userButton:hover {
+  background: var(--bg-tertiary-dark, #3a3a3a);
+  border-color: var(--border-hover-dark, #4a4a4a);
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--accent, #10b981);
+  transition: var(--transition-smooth, all 0.3s ease);
+}
+
+.username {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary, #0f172a);
+  letter-spacing: -0.01em;
+}
+
+:global(.dark) .username {
+  color: var(--text-primary-dark, #f1f5f9);
+}
+
+.chevron {
+  width: 14px;
+  height: 14px;
+  color: var(--text-secondary, #475569);
+  transition: var(--transition-smooth, all 0.3s ease);
+}
+
+:global(.dark) .chevron {
+  color: var(--text-secondary-dark, #94a3b8);
+}
+
+.userButton:hover .chevron {
+  color: var(--text-primary, #0f172a);
+}
+
+:global(.dark) .userButton:hover .chevron {
+  color: var(--text-primary-dark, #f1f5f9);
+}
+
+/* ============================================
+   DROPDOWN MENU
+   ============================================ */
+
+.dropdownOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 240px;
+  background: var(--bg-primary, #ffffff);
+  border: 1px solid var(--header-border, #e8edf4);
+  border-radius: var(--radius-md, 12px);
+  box-shadow: var(--shadow-lg, 0 8px 30px rgba(0, 0, 0, 0.08));
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 110;
+  animation: slideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+}
+
+:global(.dark) .dropdownMenu {
+  background: var(--bg-primary-dark, #1a1a1a);
+  border-color: var(--header-border-dark, #2a2a2a);
+  box-shadow: var(--shadow-lg-dark, 0 8px 30px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdownUserInfo {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--header-border, #e8edf4);
+  margin-bottom: 4px;
+}
+
+:global(.dark) .dropdownUserInfo {
+  border-bottom-color: var(--header-border-dark, #2a2a2a);
+}
+
+.dropdownLabel {
+  font-size: 0.75rem;
+  color: var(--text-tertiary, #94a3b8);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.dropdownUsername {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-primary, #0f172a);
+  margin: 2px 0 0 0;
+}
+
+:global(.dark) .dropdownUsername {
+  color: var(--text-primary-dark, #f1f5f9);
+}
+
+.dropdownLink,
+.dropdownLinkDanger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--radius-sm, 8px);
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--transition-smooth, all 0.3s ease);
+}
+
+.dropdownLink {
+  color: var(--text-secondary, #475569);
+}
+
+:global(.dark) .dropdownLink {
+  color: var(--text-secondary-dark, #94a3b8);
+}
+
+.dropdownLink:hover {
+  background: var(--bg-secondary, #ffffff);
+  color: var(--text-primary, #0f172a);
+}
+
+:global(.dark) .dropdownLink:hover {
+  background: var(--bg-secondary-dark, #2a2a2a);
+  color: var(--text-primary-dark, #f1f5f9);
+}
+
+.dropdownIcon {
+  width: 14px;
+  height: 14px;
+}
+
+.dropdownLinkDanger {
+  color: #E05A47;
+}
+
+.dropdownLinkDanger:hover {
+  background: rgba(224, 90, 71, 0.08);
+  color: #CE4735;
+}
+
+/* ============================================
+   SIGN IN BUTTON
+   ============================================ */
+
+.signInButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--text-primary, #0f172a);
+  color: var(--bg-primary, #ffffff);
+  border: none;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.04));
+  transition: var(--transition-smooth, all 0.3s ease);
+}
+
+:global(.dark) .signInButton {
+  background: var(--text-primary-dark, #f1f5f9);
+  color: var(--bg-primary-dark, #1a1a1a);
+}
+
+.signInButton:hover {
+  background: var(--accent, #10b981);
+  color: #1C1C1E;
+  transform: translateY(-1px);
+}
+
+:global(.dark) .signInButton:hover {
+  background: var(--accent, #34d399);
+  color: #1C1C1E;
+}
+
+.signInButton:active {
+  transform: scale(0.97);
+}
+
+.githubIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .brandName {
+    font-size: 1rem;
+  }
+  
+  .logoBox {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .logoText {
+    font-size: 0.85rem;
+  }
+  
+  .themeToggle {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .themeIcon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .signInButton {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  .brandName {
+    display: none;
+  }
+  
+  .logoBox {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .logoText {
+    font-size: 0.75rem;
+  }
+  
+  .themeToggle {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .themeIcon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .userButton {
+    padding: 4px 10px 4px 4px;
+  }
+  
+  .avatar {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .signInButton {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    gap: 4px;
+  }
+  
+  .githubIcon {
+    width: 14px;
+    height: 14px;
+  }
+}
